@@ -1,0 +1,9 @@
+name: CompFuzzy
+on: [push]
+jobs:
+  Fuzzing:
+    steps:
+    - name: Build
+      uses: kbuaaaaaa/compfuzzy/fuzzer_build@master
+      with:
+          fuzzer: fuzz-d
