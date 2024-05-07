@@ -1,7 +1,7 @@
 name: CompFuzzy
 on: [push, workflow_dispatch]
 jobs:
-  Build Fuzzer:
+  Build_Fuzzer:
     runs-on: ubuntu-latest
     steps:
       - name: Install Java 21
