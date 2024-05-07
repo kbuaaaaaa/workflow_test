@@ -24,7 +24,7 @@ jobs:
         uses: dafny-lang/setup-dafny-action@v1
       - name: Run fuzz-d
         run: |
-          java -jar /app/build/libs/app.jar fuzz
+          java -jar app/build/libs/app.jar fuzz
           cd output
           cat fuzz-d.log
     
