@@ -1,7 +1,7 @@
 name: CompFuzzy
 on: [push, workflow_dispatch]
 jobs:
-  Build_Fuzzer:
+  Fuzz:
     runs-on: ubuntu-latest
     steps:
       - name: Install Java 21
@@ -20,5 +20,13 @@ jobs:
       - name: Build fuzz-d
         run: |
           ./gradlew build --info
+      - name: Install Dafny
+        uses: dafny-lang/setup-dafny-action@v1
+      - name: Run fuzz-d
+        run: |
+          java -jar /app/build/libs/app.jar fuzz
+          cd output
+          cat fuzz-d.log
+    
           
       
