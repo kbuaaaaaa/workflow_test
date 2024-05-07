@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@master
         with:
           repository: kbuaaaaaa/fuzz-d
+          submodules: recursive
       - name: Build fuzz-d
         run: |
           ./gradlew build --info
