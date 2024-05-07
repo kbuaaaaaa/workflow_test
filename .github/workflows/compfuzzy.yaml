@@ -25,8 +25,7 @@ jobs:
       - name: Run fuzz-d
         run: |
           java -jar app/build/libs/app.jar fuzz
-          cd output
-          cat fuzz-d.log
+          cat output/*/fuzz-d.log
     
           
       
