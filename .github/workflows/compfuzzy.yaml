@@ -8,11 +8,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 21
-      - name: Clone {{$input.fuzzer}}
+      - name: Clone fuzz-d
         uses: actions/checkout@master
         with:
-          repository: fuzz-d/fuzz-d
-      - name: Build {{$input.fuzzer}}
+          repository: kbuaaaaaa/fuzz-d
+      - name: Build fuzz-d
         run: |
           ls
           ./gradlew build --info
