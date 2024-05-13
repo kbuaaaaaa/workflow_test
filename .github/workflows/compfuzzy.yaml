@@ -6,3 +6,5 @@ jobs:
     steps:
       - name: Build Fuzzer
         uses: kbuaaaaaa/CompFuzzy/fuzzer_build@main
+      - name: Run Fuzzer
+        uses: kbuaaaaaa/CompFuzzy/fuzzer_run@main
