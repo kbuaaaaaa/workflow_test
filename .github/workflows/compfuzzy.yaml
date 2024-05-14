@@ -5,6 +5,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build Fuzzer
-        uses: kbuaaaaaa/CompFuzzy/.github/workflows/fuzzer_build
+        uses: actions/github-script@v6
+        with:
+            github-token: ${{ secrets.COMPFUZZY_PAT }}
+            script: |
+            await github.rest.actions.createworkflowDispatch({
+                owner: 'kbuaaaaaa',
+                repo: 'CompFuzzy',
+                workflow_id: 'fuzzer_build.yaml',
+                ref: 'main'
+            })
       - name: Run Fuzzer
-        uses: kbuaaaaaa/CompFuzzy/.github/workflows/fuzzer_run
+        uses: actions/github-script@v6
+        with:
+            github-token: ${{ secrets.COMPFUZZY_PAT }}
+            script: |
+            await github.rest.actions.createworkflowDispatch({
+                owner: 'kbuaaaaaa',
+                repo: 'CompFuzzy',
+                workflow_id: 'fuzzer_run.yaml',
+                ref: 'main'
+            })
