@@ -5,6 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build Fuzzer
-        uses: kbuaaaaaa/CompFuzzy/fuzzer_build@main
+        uses: kbuaaaaaa/CompFuzzy/.github/workflows/fuzzer_build
       - name: Run Fuzzer
-        uses: kbuaaaaaa/CompFuzzy/fuzzer_run@main
+        uses: kbuaaaaaa/CompFuzzy/.github/workflows/fuzzer_run
