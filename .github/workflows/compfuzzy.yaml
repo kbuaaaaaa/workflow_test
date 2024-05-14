@@ -9,7 +9,7 @@ jobs:
         with:
             github-token: ${{ secrets.COMPFUZZY_PAT }}
             script: |
-              await github.actions.createworkflowDispatch({
+              await github.rest.actions.createWorkflowDispatch({
                   owner: 'kbuaaaaaa',
                   repo: 'CompFuzzy',
                   workflow_id: 'fuzzer_build.yaml',
@@ -20,7 +20,7 @@ jobs:
         with:
             github-token: ${{ secrets.COMPFUZZY_PAT }}
             script: |
-              await github.actions.createworkflowDispatch({
+              await github.rest.actions.createWorkflowDispatch({
                   owner: 'kbuaaaaaa',
                   repo: 'CompFuzzy',
                   workflow_id: 'fuzzer_run.yaml',
