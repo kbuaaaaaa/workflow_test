@@ -1,7 +1,7 @@
 name: CompFuzzy
 on: [push, workflow_dispatch]
 jobs:
-  Fuzz:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - name: Build Fuzzer
@@ -15,6 +15,10 @@ jobs:
                   workflow_id: 'fuzzer_build.yaml',
                   ref: 'main'
               })
+  Fuzz:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
       - name: Run Fuzzer
         uses: actions/github-script@v7
         with:
