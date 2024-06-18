@@ -13,7 +13,7 @@ jobs:
                   owner: 'kbuaaaaaa',
                   repo: 'CompFuzzCI',
                   workflow_id: 'fuzz.yaml',
-                  ref: 'main'
+                  ref: 'main',
                   inputs: {
                       trigger: 'push',
                       head-commit: ${{github.event.push.head_commit.id}}
