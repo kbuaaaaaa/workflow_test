@@ -16,7 +16,7 @@ jobs:
                   ref: 'main',
                   inputs: {
                       trigger: 'push',
-                      head-commit: ${{github.event.push.head_commit.id}}
-                      first-commit: ${{github.event.before}}
+                      head_commit: ${{github.event.push.head_commit.id}}
+                      previous_commit: ${{github.event.before}}
                   }
               })
