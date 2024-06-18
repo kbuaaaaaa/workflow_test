@@ -17,6 +17,6 @@ jobs:
                   inputs: {
                       trigger: 'push',
                       head_commit: '${{github.event.head_commit.id}}',
-                      previous_commit: '${{github.event.before.id}}'
+                      previous_commit: '${{github.event.before}}'
                   }
               })
