@@ -51,7 +51,7 @@ jobs:
                   }
               })
   UpdateIssueOpened:
-    if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'reopened')
+    if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'reopened')  && github.event.pull_request.base.ref == 'master'
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CompFuzzCI
