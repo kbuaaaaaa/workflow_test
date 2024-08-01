@@ -2,16 +2,16 @@ name: CompFuzzCI
 on:
   pull_request:
     branches:
-      - master
+      - main
     types: [opened, closed, synchronize, reopened]
   issues:
     branches:
-      - master
+      - main
     types: [opened, closed, reopened]
   
 jobs:
   FuzzOnPR:
-    if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') && github.event.pull_request.base.ref == 'master'
+    if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CompFuzzCI
@@ -51,7 +51,7 @@ jobs:
                   }
               })
   UpdateIssueOpened:
-    if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'reopened')  && github.event.pull_request.base.ref == 'master'
+    if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'reopened')  && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CompFuzzCI
