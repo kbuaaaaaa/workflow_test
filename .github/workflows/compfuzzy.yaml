@@ -28,7 +28,7 @@ jobs:
                   workflow_id: 'fuzz.yaml',
                   ref: 'main',
                   inputs: {
-                      commit: '${{github.event.head_commit.id}}',
+                      commit: '${{ github.event.pull_request.head.sha }}',
                       main_commit: '${{github.event.pull_request.base.sha}}',
                       branch: '${{github.event.pull_request.head.ref}}',
                       duration: '3600',
@@ -70,7 +70,7 @@ jobs:
                   inputs: {
                       issue_number: '${{github.event.issue.number}}'
                       issuer: '${{github.event.issue.user.login}}'
-                      commit: '${{github.event.head_commit.id}}'
+                      commit: ${{ github.sha }}                
                   }
               })
   UpdateIssueClosed:
