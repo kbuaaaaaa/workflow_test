@@ -1,20 +1,17 @@
 name: CompFuzzCI
 on:
   pull_request:
+    branches:
+      - master
     types: [opened, closed, synchronize, reopened]
   issues:
+    branches:
+      - master
     types: [opened, closed, reopened]
   
 jobs:
-  PrintEvent:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print Event
-        run: |
-          echo ${{ github.event_name }}
-          echo ${{ github.event.action }}
   FuzzOnPR:
-    if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize')
+    if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') && github.event.pull_request.base.ref == 'master'
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CompFuzzCI
@@ -23,8 +20,8 @@ jobs:
             github-token: ${{ secrets.COMPFUZZCI_PAT }}
             script: |
               await github.rest.actions.createWorkflowDispatch({
-                  owner: 'kbuaaaaaa',
-                  repo: 'CompFuzzCI',
+                  owner: 'CompFuzzCI',
+                  repo: 'DafnyCompilerFuzzer',
                   workflow_id: 'fuzz.yaml',
                   ref: 'main',
                   inputs: {
@@ -45,8 +42,8 @@ jobs:
             github-token: ${{ secrets.COMPFUZZCI_PAT }}
             script: |
               await github.rest.actions.createWorkflowDispatch({
-                  owner: 'kbuaaaaaa',
-                  repo: 'CompFuzzCI',
+                  owner: 'CompFuzzCI',
+                  repo: 'DafnyCompilerFuzzer',
                   workflow_id: 'update_pr_close.yaml',
                   ref: 'main',
                   inputs: {
@@ -63,13 +60,13 @@ jobs:
             github-token: ${{ secrets.COMPFUZZCI_PAT }}
             script: |
               await github.rest.actions.createWorkflowDispatch({
-                  owner: 'kbuaaaaaa',
-                  repo: 'CompFuzzCI',
+                  owner: 'CompFuzzCI',
+                  repo: 'DafnyCompilerFuzzer',
                   workflow_id: 'update_issue_open.yaml',
                   ref: 'main',
                   inputs: {
-                      issue_number: '${{github.event.issue.number}}'
-                      issuer: '${{github.event.issue.user.login}}'
+                      issue_number: '${{github.event.issue.number}}',
+                      issuer: '${{github.event.issue.user.login}}',
                       commit: ${{ github.sha }}                
                   }
               })
@@ -83,8 +80,8 @@ jobs:
             github-token: ${{ secrets.COMPFUZZCI_PAT }}
             script: |
               await github.rest.actions.createWorkflowDispatch({
-                  owner: 'kbuaaaaaa',
-                  repo: 'CompFuzzCI',
+                  owner: 'CompFuzzCI',
+                  repo: 'DafnyCompilerFuzzer',
                   workflow_id: 'update_issue_close.yaml',
                   ref: 'main',
                   inputs: {
