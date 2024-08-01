@@ -1,13 +1,9 @@
 name: CompFuzzCI
 on:
   pull_request:
-    branches:
-      - master
     types: [opened, closed, synchronize, reopened]
   issues:
     types: [opened, closed, reopened]
-    branches:
-      - master
   
 jobs:
   PrintEvent:
