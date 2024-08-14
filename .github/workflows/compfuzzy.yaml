@@ -1,6 +1,6 @@
 name: CompFuzzCI
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - main
     types: [opened, closed, synchronize, reopened]
