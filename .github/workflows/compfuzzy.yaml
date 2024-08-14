@@ -19,7 +19,6 @@ jobs:
         with:
             github-token: ${{ secrets.COMPFUZZCI_PAT }}
             script: |
-              echo '${{ toJson(github.event.pull_request) }}'
               await github.rest.actions.createWorkflowDispatch({
                   owner: 'CompFuzzCI',
                   repo: 'DafnyCompilerFuzzer',
