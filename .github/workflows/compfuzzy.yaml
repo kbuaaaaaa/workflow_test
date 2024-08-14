@@ -28,7 +28,7 @@ jobs:
                   inputs: {
                       commit: '${{ github.event.pull_request.head.sha }}',
                       main_commit: '${{github.event.pull_request.base.sha}}',
-                      branch: '${{github.event.pull_request.head.ref}}',
+                      branch: '${{github.event.pull_request.head.repo.full_name}}',
                       duration: '3600',
                       instance: '5'
                   }
