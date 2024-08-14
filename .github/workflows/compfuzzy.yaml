@@ -11,7 +11,7 @@ on:
   
 jobs:
   FuzzOnPR:
-    if: github.event_name == 'pull_request_target' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') && github.event.pull_request.base.ref == 'main'
+    if: github.event_name == 'pull_request_target' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') && github.event.pull_request.base.ref == 'master'
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CompFuzzCI
@@ -29,11 +29,11 @@ jobs:
                       main_commit: '${{github.event.pull_request.base.sha}}',
                       branch: '${{github.event.pull_request.head.repo.full_name}}',
                       duration: '3600',
-                      instance: '5'
+                      instance: '2'
                   }
               })
   UpdatePRClosed:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    if: github.event_name == 'pull_request_target' && github.event.action == 'closed'
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CompFuzzCI
@@ -47,11 +47,11 @@ jobs:
                   workflow_id: 'update_pr_close.yaml',
                   ref: 'main',
                   inputs: {
-                      pr_number: '${{github.event.number}}'
+                      pr_head_ref: '${{github.event.pull_request.head.repo.full_name}}' 
                   }
               })
   UpdateIssueOpened:
-    if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'reopened')  && github.event.pull_request.base.ref == 'main'
+    if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'reopened')  && github.event.pull_request.base.ref == 'master'
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CompFuzzCI
