@@ -10,5 +10,5 @@ jobs:
     steps:
       - name: Print
         run: |
-          echo "${{github.event.pull_request}}"
+          echo "${{ toJSON(github.event) }}"
         
